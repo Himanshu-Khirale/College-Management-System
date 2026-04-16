@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import axiosWrapper from "../../utils/AxiosWrapper";
 import DeleteConfirm from "../../components/DeleteConfirm";
 import CustomButton from "../../components/CustomButton";
+import { getFileUrl } from "../../utils/GetFile";
 
 const AddTimetableModal = ({
   isOpen,
@@ -104,7 +105,7 @@ const AddTimetableModal = ({
           {formData.previewUrl && (
             <div className="mt-4">
               <img
-                src={formData.previewUrl}
+                src={getFileUrl(formData.previewUrl)}
                 alt="Preview"
                 className="max-w-full h-auto"
               />
@@ -282,7 +283,7 @@ const Timetable = () => {
                 <td className="py-4 px-6">
                   <a
                     className="text-xl"
-                    href={process.env.REACT_APP_MEDIA_LINK + "/" + item.link}
+                    href={getFileUrl(item.link)}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

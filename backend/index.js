@@ -3,16 +3,20 @@ const express = require("express");
 const app = express();
 const path = require("path");
 connectToMongo();
-const port = 4000 || process.env.PORT;
+const port = process.env.PORT || 4000;
 var cors = require("cors");
 
-app.use(
-  cors({
-    origin: process.env.FRONTEND_API_LINK,
-  })
-);
+const corsOptions = {
+  origin: [process.env.FRONTEND_API_LINK, "http://localhost:3000"],
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json()); //to convert request data to json
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.send("Hello 👋 I am Working Fine 🚀");

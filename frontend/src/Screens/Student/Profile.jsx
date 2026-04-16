@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { getFileUrl } from "../../utils/GetFile";
 import CustomButton from "../../components/CustomButton";
 import UpdatePasswordLoggedIn from "../../components/UpdatePasswordLoggedIn";
 
@@ -20,7 +21,7 @@ const Profile = ({ profileData }) => {
       <div className="flex items-center gap-8 mb-12 border-b pb-8 justify-between">
         <div className="flex items-center gap-8">
           <img
-            src={`${process.env.REACT_APP_MEDIA_LINK}/${profileData.profile}`}
+            src={getFileUrl(profileData.profile)}
             alt="Profile"
             className="w-40 h-40 rounded-full object-cover ring-4 ring-blue-500 ring-offset-4"
           />

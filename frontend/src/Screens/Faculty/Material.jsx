@@ -9,6 +9,7 @@ import DeleteConfirm from "../../components/DeleteConfirm";
 import CustomButton from "../../components/CustomButton";
 import { MdLink } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
+import { getFileUrl } from "../../utils/GetFile";
 const Material = () => {
   const [materials, setMaterials] = useState([]);
   const [subjects, setSubjects] = useState([]);
@@ -344,9 +345,7 @@ const Material = () => {
                     <CustomButton
                       variant="primary"
                       onClick={() => {
-                        window.open(
-                          `${process.env.REACT_APP_MEDIA_LINK}/${material.file}`
-                        );
+                        window.open(getFileUrl(material.file));
                       }}
                     >
                       <MdLink className="text-xl" />

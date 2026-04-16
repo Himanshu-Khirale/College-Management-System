@@ -1,158 +1,107 @@
-# College Management System
+# 🎓 College Management System (MERN)
 
-[![MERN Stack](https://img.shields.io/badge/Stack-MERN-blue)](https://www.mongodb.com/mern-stack)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Node.js](https://img.shields.io/badge/Node.js-v14+-green)](https://nodejs.org)
-[![React](https://img.shields.io/badge/React-v17+-blue)](https://reactjs.org)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=for-the-badge)](https://college-management-system-vof5.vercel.app/)
+[![Backend](https://img.shields.io/badge/API-Render-blue?style=for-the-badge)](https://college-management-system-iyxw.onrender.com/)
 
-A comprehensive MERN stack-based College Management System that helps manage academic activities, student information, faculty details, and administrative tasks. This system streamlines the management of educational institutions by providing a centralized platform for administrators, faculty, and students.
+A comprehensive, production-ready College Management System built with the MERN stack. Features include role-based access control, academic material management, marks tracking, and dynamic timetable generation.
 
-## Features
+## 🚀 Live Links
+- **Frontend**: [college-management-system-vof5.vercel.app](https://college-management-system-vof5.vercel.app/)
+- **Backend API**: [college-management-system-iyxw.onrender.com](https://college-management-system-iyxw.onrender.com/)
 
-### Admin Features
+---
 
-- Manage faculty accounts with detailed profiles and emergency contacts
-- Manage student accounts with enrollment numbers and academic details
-- Manage academic branches
-- Handle subject/course management by semester and branch
-- Generate and manage notices for students and faculty
-- Upload and manage timetables by branch and semester
-- Profile management and password updates
+## ✨ Features
 
-### Faculty Features
+### 👤 Admin Dashboard
+- **User Management**: Register, update, and manage Admin, Faculty, and Student accounts.
+- **Academic Setup**: Manage Branches, Subjects, and Exams.
+- **Global Notices**: Post university-wide announcements.
+- **Profile Control**: Manage personal and institutional details.
 
-- View and manage personal profile with emergency contacts
-- Upload and manage study materials (notes, assignments, syllabus)
-- Filter and organize materials by subject, semester, and type
-- Upload and manage timetables for their branches
-- Search and view student information by enrollment, name, or semester
-- View and respond to notices
-- Update profile and credentials
-- Password management and reset functionality
+### 👨‍🏫 Faculty Portal
+- **Material Management**: Upload and share study materials (PDFs, docs) via Cloudinary.
+- **Marks Management**: Simplified bulk entry for student marks across different exams and subjects.
+- **Timetable View**: Access department-specific schedules.
+- **Student Finder**: Quick lookup for student details and performance.
 
-### Student Features
+### 🎓 Student Portal
+- **Dashboard**: Track upcoming exams and recent notices.
+- **Material Hub**: Download study materials shared by faculty.
+- **Performance View**: Real-time access to exam results and remarks.
+- **Schedules**: Personalized timetable view.
 
-- View personal profile and academic details
-- Access study materials filtered by subject and type
-- View class timetables with download option
-- Access notices and announcements
-- Update profile information
-- Password management and reset functionality
+---
 
-## Tech Stack
+## 🛠️ Technology Stack
 
-- Frontend: React.js
-- Backend: Node.js, Express.js
-- Database: MongoDB
-- Authentication: JWT
+**Frontend:**
+- **React.js**: Functional components with Hooks.
+- **Redux**: Global state management.
+- **Tailwind CSS**: Modern, responsive UI design.
+- **Axios**: Intelligent API request handling with interceptors.
+- **React-Hot-Toast**: Elegant notification system.
 
-## Prerequisites
+**Backend:**
+- **Node.js & Express**: Scalable API architecture.
+- **MongoDB Atlas**: Cloud-based NoSQL database.
+- **Cloudinary**: Production-grade storage for profiles and academic materials.
+- **Multer**: Multi-part form data handling.
+- **JWT**: Secure stateless authentication and role-based access.
 
-- Node.js
-- MongoDB
-- npm
+---
 
-## Setup Instructions
+## ⚙️ Environment Variables
 
-Sample .env file is added in both backend and frontend, copy that variables and create `.env` in both the folders and then follow below given instructions
+To run this project locally, create a `.env` file in both the `backend` and `frontend` directories.
 
-1. Clone the repository:
-
-```bash
-git clone <repository-url>
-cd College-Management-System
-```
-
-2. Install dependencies:
-
-```bash
-# Install backend dependencies
-cd backend
-npm install
-
-# Install frontend dependencies
-cd ../frontend
-npm install
-```
-
-3. Create a `.env` file in the backend directory with the following variables:
-
-```
-MONGODB_URI =mongodb://127.0.0.1:27017/College-Management-System
-PORT = 4000
-FRONTEND_API_LINK = http://localhost:3000
-JWT_SECRET = THISISSECRET
-
-NODEMAILER_EMAIL =
-NODEMAILER_PASS =
-```
-
-4. Create a `.env` file in the frontend directory:
-
+### Backend `.env`
 ```env
-REACT_APP_APILINK = http://localhost:4000/api
-
-REACT_APP_MEDIA_LINK = http://localhost:4000/media
-
+MONGODB_URI=your_mongodb_connection_string
+PORT=4000
+FRONTEND_API_LINK=http://localhost:3000
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
 ```
 
-5. Start the development servers:
-
-```bash
-# Start backend server (from backend directory)
-npm run dev
-
-# Start frontend server (from frontend directory)
-npm start
+### Frontend `.env`
+```env
+REACT_APP_APILINK=http://localhost:4000/api
+REACT_APP_MEDIA_LINK=http://localhost:4000/media
 ```
 
-## Initial Setup
+---
 
-1. Create an admin account using the seeder:
+## 💻 Local Setup
 
-```bash
-cd backend
-npm run seed
-```
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/Himanshu-Khirale/College-Management-System.git
+   ```
 
-This will create a default admin account with the following credentials:
+2. **Install Backend Dependencies**:
+   ```bash
+   cd backend
+   npm install
+   npm start
+   ```
 
-- Employee ID: 123456
-- Password: admin123
-- Email: admin@gmail.com
+3. **Install Frontend Dependencies**:
+   ```bash
+   cd ../frontend
+   npm install
+   npm start
+   ```
 
-## Project Structure
+---
 
-```
-college-management-system/
-├── backend/
-│   ├── controllers/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   ├── middlewares/
-│   │   ├── utils/
-│   │   └── media/
-│   └── README.md
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── context/
-│   │   └── utils/
-│   └── public/
-└── README.md
-```
+## 🛡️ CORS & Security
+The system is configured with a robust CORS policy that dynamically whitelists production origins (Vercel) and development environments (Localhost), supporting `GET`, `POST`, `PUT`, `DELETE`, and `PATCH` methods with full credential support.
 
-## For Any Doubt Feel Free To Contact Me 🚀
+## 📄 License
+This project is for academic purposes. Feel free to fork and use it!
 
-- [My Website](http://krishjotaniya.netlify.app/)
-- [Linkedin](https://www.linkedin.com/in/krishjotaniya/)
-- [krishjotaniya71@gmail.com](mailto:krishjotaniya71@gmail.com)
+---
 
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+**Developed with ❤️ by [Himanshu Khirale](https://github.com/Himanshu-Khirale)**

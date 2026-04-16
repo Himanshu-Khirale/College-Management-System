@@ -39,6 +39,7 @@ const ViewMarks = () => {
 
   useEffect(() => {
     fetchMarks(userData?.semester || 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSemesterChange = (e) => {

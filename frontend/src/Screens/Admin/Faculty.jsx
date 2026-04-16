@@ -44,11 +44,12 @@ const Faculty = () => {
   const [isEditing, setIsEditing] = useState(false);
   const userToken = localStorage.getItem("userToken");
   const [file, setFile] = useState(null);
-  const [dataLoading, setDataLoading] = useState(null);
+  const [dataLoading, setDataLoading] = useState(false);
 
   useEffect(() => {
     getFacultyHandler();
     getBranchHandler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getBranchHandler = async () => {

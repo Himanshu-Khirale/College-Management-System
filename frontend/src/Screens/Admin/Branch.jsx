@@ -19,10 +19,10 @@ const Branch = () => {
   const [selectedBranchId, setSelectedBranchId] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [dataLoading, setDataLoading] = useState(false);
-  const [processLoading, setProcessLoading] = useState(false);
 
   useEffect(() => {
     getBranchHandler();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getBranchHandler = async () => {

@@ -62,14 +62,16 @@ const Home = () => {
 
   useEffect(() => {
     fetchUserDetails();
-  }, [dispatch, userToken]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const pathMenuId = urlParams.get("page") || "home";
     const validMenu = MENU_ITEMS.find((item) => item.id === pathMenuId);
     setSelectedMenu(validMenu ? validMenu.id : "home");
-  }, [location.pathname]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.search]);
 
   const getMenuItemClass = (menuId) => {
     const isSelected = selectedMenu === menuId;

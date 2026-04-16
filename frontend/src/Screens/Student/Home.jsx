@@ -56,9 +56,11 @@ const Home = () => {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchUserDetails();
-  }, [dispatch, userToken]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const getMenuItemClass = (menuId) => {
     const isSelected = selectedMenu.toLowerCase() === menuId.toLowerCase();
@@ -93,12 +95,13 @@ const Home = () => {
     return MenuItem && <MenuItem />;
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
     const pathMenuId = urlParams.get("page") || "home";
     const validMenu = MENU_ITEMS.find((item) => item.id === pathMenuId);
     setSelectedMenu(validMenu ? validMenu.id : "home");
-  }, [location.pathname]);
+  }, [location.search]);
 
   const handleMenuClick = (menuId) => {
     setSelectedMenu(menuId);

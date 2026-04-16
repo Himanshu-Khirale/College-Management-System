@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { FiUpload } from "react-icons/fi";
-import { MdOutlineDelete, MdEdit, MdViewComfy, MdLink } from "react-icons/md";
+import { MdOutlineDelete, MdEdit, MdLink } from "react-icons/md";
 import { IoMdAdd, IoMdClose } from "react-icons/io";
 import Heading from "../../components/Heading";
-import { AiOutlineClose } from "react-icons/ai";
 import toast from "react-hot-toast";
 import axiosWrapper from "../../utils/AxiosWrapper";
 import DeleteConfirm from "../../components/DeleteConfirm";

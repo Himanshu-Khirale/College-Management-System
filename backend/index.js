@@ -7,10 +7,25 @@ const port = process.env.PORT || 4000;
 var cors = require("cors");
 
 const corsOptions = {
-  origin: [process.env.FRONTEND_API_LINK, "http://localhost:3000"],
+  origin: (origin, callback) => {
+    const allowedOrigins = [
+      "http://localhost:3000",
+      "https://college-management-system-vof5.vercel.app",
+      "https://college-management-system-vof5-himanshu-khirales-projects.vercel.app", // Added alternative Vercel format
+      process.env.FRONTEND_API_LINK ? process.env.FRONTEND_API_LINK.replace(/\/$/, "") : null
+    ].filter(Boolean); // Clean out nulls
+
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.warn(`CORS blocked for origin: ${origin}`);
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "Accept"],
+  maxAge: 86400, // Cache preflight for 24 hours
 };
 
 app.use(cors(corsOptions));

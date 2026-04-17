@@ -9,7 +9,7 @@ const getSubjectController = async (req, res) => {
     if (semester) query.semester = semester;
     let subjects = await Subject.find(query).populate("branch");
     if (!subjects || subjects.length === 0) {
-      return ApiResponse.error("No Subjects Found", 404).send(res);
+      return ApiResponse.success([], "No Subjects Found").send(res);
     }
     return ApiResponse.success(subjects, "All Subjects Loaded!").send(res);
   } catch (error) {

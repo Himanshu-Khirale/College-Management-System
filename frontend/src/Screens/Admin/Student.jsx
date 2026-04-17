@@ -26,6 +26,7 @@ const Student = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [file, setFile] = useState(null);
   const [hasSearched, setHasSearched] = useState(false);
+  const [allStudentsLoading, setAllStudentsLoading] = useState(true);
   const userToken = localStorage.getItem("userToken");
 
   const [formData, setFormData] = useState({
@@ -54,12 +55,12 @@ const Student = () => {
 
   useEffect(() => {
     getBranchHandler();
+    getAllStudents();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const getBranchHandler = async () => {
     try {
-      toast.loading("Loading branches...");
       const response = await axiosWrapper.get(`/branch`, {
         headers: {
           Authorization: `Bearer ${userToken}`,
@@ -67,18 +68,25 @@ const Student = () => {
       });
       if (response.data.success) {
         setBranches(response.data.data);
-      } else {
-        toast.error(response.data.message);
       }
     } catch (error) {
-      if (error.response?.status === 404) {
-        setBranches([]);
-      } else {
-        console.error(error);
-        toast.error(error.response?.data?.message || "Error fetching branches");
+      console.error("Error fetching branches:", error);
+    }
+  };
+
+  const getAllStudents = async () => {
+    try {
+      setAllStudentsLoading(true);
+      const response = await axiosWrapper.get(`/student`, {
+        headers: { Authorization: `Bearer ${userToken}` },
+      });
+      if (response.data.success) {
+        setStudents(response.data.data);
       }
+    } catch (error) {
+      console.error("Error fetching all students:", error);
     } finally {
-      toast.dismiss();
+      setAllStudentsLoading(false);
     }
   };
 
@@ -207,6 +215,7 @@ const Student = () => {
           toast.success(response.data.message);
         }
         resetForm();
+        getAllStudents();
       } else {
         toast.error(response.data.message);
       }
@@ -267,7 +276,7 @@ const Student = () => {
       if (response.data.success) {
         toast.success("Student has been deleted successfully");
         setIsDeleteConfirmOpen(false);
-        searchStudents({ preventDefault: () => {} });
+        getAllStudents();
       } else {
         toast.error(response.data.message);
       }
@@ -400,24 +409,19 @@ const Student = () => {
             </div>
           </form>
 
-          {!hasSearched && (
-            <div className="text-center mt-8 text-gray-600 flex flex-col items-center justify-center my-10 bg-white p-10 rounded-lg mx-auto w-[40%]">
-              <img
-                src="/assets/filter.svg"
-                alt="Select filters"
-                className="w-64 h-64 mb-4"
-              />
-              Please select at least one filter to search students
-            </div>
+          {allStudentsLoading && (
+            <div className="text-center mt-8 py-10 text-gray-500">Loading students...</div>
           )}
 
-          {hasSearched && students.length === 0 && (
+          {!allStudentsLoading && hasSearched && students.length === 0 && (
             <NoData title="No students found" />
           )}
 
-          {students && students.length > 0 && (
+          {!allStudentsLoading && students && students.length > 0 && (
             <div className="mt-8">
-              <h2 className="text-xl font-semibold mb-4">Search Results</h2>
+              <h2 className="text-xl font-semibold mb-4">
+                {hasSearched ? "Search Results" : "All Students"}
+              </h2>
               <div className="overflow-x-auto">
                 <table className="min-w-full bg-white border border-gray-300">
                   <thead>

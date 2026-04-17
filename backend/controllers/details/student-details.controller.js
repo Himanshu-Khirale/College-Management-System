@@ -40,7 +40,7 @@ const getAllDetailsController = async (req, res) => {
       .populate("branchId");
 
     if (!users || users.length === 0) {
-      return ApiResponse.notFound("No Student Found").send(res);
+      return ApiResponse.success([], "No Student Found").send(res);
     }
 
     return ApiResponse.success(users, "Student Details Found!").send(res);
@@ -332,7 +332,7 @@ const searchStudentsController = async (req, res) => {
       .sort({ enrollmentNo: 1 });
 
     if (!students || students.length === 0) {
-      return ApiResponse.notFound("No students found").send(res);
+      return ApiResponse.success([], "No students found").send(res);
     }
 
     return ApiResponse.success(students, "Students found successfully").send(

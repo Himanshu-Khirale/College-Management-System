@@ -5,7 +5,7 @@ const getNoticeController = async (req, res) => {
   try {
     const notices = await Notice.find();
     if (!notices || notices.length === 0) {
-      return ApiResponse.error("No Notices Found", 404).send(res);
+      return ApiResponse.success([], "No Notices Found").send(res);
     }
     return ApiResponse.success(notices, "All Notices Loaded!").send(res);
   } catch (error) {

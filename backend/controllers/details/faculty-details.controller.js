@@ -34,7 +34,7 @@ const getAllFacultyController = async (req, res) => {
   try {
     const users = await facultyDetails.find().select("-__v -password");
     if (!users || users.length === 0) {
-      return ApiResponse.notFound("No Faculty Found").send(res);
+      return ApiResponse.success([], "No Faculty Found").send(res);
     }
     return ApiResponse.success(users, "Faculty Details Found!").send(res);
   } catch (error) {

@@ -13,7 +13,7 @@ const getAllExamsController = async (req, res) => {
     const exams = await Exam.find(query);
 
     if (!exams || exams.length === 0) {
-      return ApiResponse.error("No Exams Found", 404).send(res);
+      return ApiResponse.success([], "No Exams Found").send(res);
     }
 
     return ApiResponse.success(exams, "All Exams Loaded!").send(res);

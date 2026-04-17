@@ -37,7 +37,7 @@ const getAllDetailsController = async (req, res, next) => {
     const users = await adminDetails.find().select("-__v -password");
 
     if (!users || users.length === 0) {
-      return ApiResponse.notFound("No Admin Found").send(res);
+      return ApiResponse.success([], "No Admin Found").send(res);
     }
 
     return ApiResponse.success(users, "Admin Details Found!").send(res);
